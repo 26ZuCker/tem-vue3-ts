@@ -119,13 +119,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, SetupContext } from "vue";
 
 export default defineComponent({
   name: "HelloWorld",
   props: {
     msg: String
-  }
+  },
+  setup(props, context: SetupContext) {}
 });
 </script>
 
