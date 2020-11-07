@@ -1,13 +1,17 @@
-<template> </template>
+<template>
+  <Son></Son>
+  <Dad></Dad>
+</template>
 <script lang="ts">
 import { SetupContext } from "vue";
-import open from "@/components/open";
-interface openProps {}
+import Son from "@/components/open/Son/Son.vue";
+import Dad from "@/components/open/Dad/Dad.vue";
+
 export default {
   inheritAttrs: false,
   name: "open",
-  components: {},
-  setup(props: openProps, { attrs, emit, slots }: SetupContext) {}
+  components: { Son, Dad },
+  setup() {}
 };
 </script>
 <style lang="scss" scoped>
