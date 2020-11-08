@@ -5,6 +5,10 @@ export default {
   setup(props: SonProps, context) {
     const { a, SonOnMounted } = SonHook();
     SonOnMounted();
+    return {
+      a,
+      SonOnMounted
+    };
   }
 };
 </script>
