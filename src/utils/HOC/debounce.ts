@@ -1,11 +1,11 @@
 /**
  * 防抖，默认以最后一次为准
- * @param {Function} func
+ * @param {()=>any} func
  * @param {number} wait
  * @param {boolean} immediate true则立即触发，防抖默认false
  */
-export default function(func, wait = 50, immediate = false) {
-  let timer;
+export default function(func: () => any, wait = 50, immediate = false) {
+  let timer: number | null;
   return function() {
     const context = this,
       args = arguments;

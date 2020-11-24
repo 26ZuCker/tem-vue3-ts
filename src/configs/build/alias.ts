@@ -8,4 +8,4 @@ const aliasMap = {
   '@img': '@/static/imgs',
   '@scss': '@/static/scss',
 };
-export default {};
+export default aliasMap;
