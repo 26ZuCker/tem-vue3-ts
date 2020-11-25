@@ -28,4 +28,3 @@ function validateType(target: any, type: string) {
   return getType(target) === type;
 }
 export default validateType;
-export { isArray, isObject, getType };

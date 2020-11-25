@@ -1,3 +1,3 @@
-import debounce from './debounce.js';
-
-export { debounce };
+export * from './compose';
+export * from './debounce';
+export * from './sort';

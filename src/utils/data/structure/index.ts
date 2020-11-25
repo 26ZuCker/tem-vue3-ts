@@ -1,4 +1,2 @@
-import LRU from './LRU.js';
-import sort from './sort.js';
-
-export { LRU, sort };
+export * from './LRU';
+export * from './Tree';

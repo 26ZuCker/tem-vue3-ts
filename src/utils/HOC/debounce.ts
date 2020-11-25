@@ -4,7 +4,7 @@
  * @param {number} wait
  * @param {boolean} immediate true则立即触发，防抖默认false
  */
-export default function(func: () => any, wait = 50, immediate = false) {
+const debounce = (func: () => any, wait = 50, immediate = false) => {
   let timer: number | null;
   return function() {
     const context = this,
@@ -22,4 +22,5 @@ export default function(func: () => any, wait = 50, immediate = false) {
       }, wait);
     }
   };
-}
+};
+export default debounce;

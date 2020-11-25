@@ -6,8 +6,8 @@ declare module '*.vue' {
 /**
  * 用于Object类型且需要增删属性的变量
  */
-interface obj{
-  [key:string]:any
+interface _obj<T=any>{
+  [key:string]:T
 }
 /**
  * 用于描述...rest
