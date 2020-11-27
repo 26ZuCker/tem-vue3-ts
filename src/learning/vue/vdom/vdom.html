@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script src="./create.js"></script>
+  <script src="./render.js"></script>
+  <script>
+    let vnode = createElement('div', { id: 'kid1', class: 'app' }, [
+      createElement('p', { key: 'a', style: { color: 'blue' } }, ['子节点1']),
+      createElement(
+        'p',
+        {
+          key: 'b',
+          '@click': () => {
+            alert('子节点2')
+          },
+        },
+        ['子节点2']
+      ),
+      createElement('p', { key: 'c', class: 'item-header' }, ['子节点3']),
+      createElement('p', { key: 'd' }, ['子节点4']),
+    ])
+    render(vnode, document.getElementById('app'))
+    console.log(JSON.stringify(vnode, null, 2))
+  </script>
+  <style scoped>
+    .item {
+      font-size: 100rem;
+      color: brown;
+    }
+  </style>
+</html>
