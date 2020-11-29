@@ -3,19 +3,21 @@
  * 参考https://mp.weixin.qq.com/s/TSaFOkKek0asJqdxDr1jxg
  */
 class VariationSearchMap {
-  tree: {};
-  constructor(apiData) {
+  tree: _obj;
+  constructor(apiData: goods) {
     this.tree = this.buildTree(apiData);
   }
 
-  // 这就是前面那个构造树的方法
-  buildTree(apiData) {
-    const tree = {};
+  /**
+   * 这就是前面那个构造树的方法
+   * @param apiData
+   */
+  buildTree(apiData: goods) {
+    const tree: _obj = {};
+
     const { variations, products } = apiData;
 
-    // 先用variations将树形结构构建出来，叶子节点默认值为null
-    addNode(tree, 0);
-    function addNode(root, deep) {
+    const addNode = (root, deep: number) => {
       const variationName = variations[deep].name;
       const variationValues = variations[deep].values;
 
@@ -28,7 +30,9 @@ class VariationSearchMap {
           addNode(root[nodeName], deep + 1);
         }
       }
-    }
+    };
+    // 先用variations将树形结构构建出来，叶子节点默认值为null
+    addNode(tree, 0);
 
     // 然后遍历一次products给树的叶子节点填上值
     for (let i = 0; i < products.length; i++) {
@@ -44,8 +48,11 @@ class VariationSearchMap {
     return tree;
   }
 
-  // 添加一个方法来搜索商品，参数结构和API数据的variationMappings一样
-  findProductByVariationMappings(variationMappings) {
+  /**
+   * 添加一个方法来搜索商品，参数结构和API数据的variationMappings一样
+   * @param variationMappings
+   */
+  findProductByVariationMappings(variationMappings: Array<good>) {
     const level1Name = `${variationMappings[0].name}：${variationMappings[0].value}`;
     const level2Name = `${variationMappings[1].name}：${variationMappings[1].value}`;
     const level3Name = `${variationMappings[2].name}：${variationMappings[2].value}`;
@@ -56,10 +63,26 @@ class VariationSearchMap {
   }
 }
 export default VariationSearchMap;
+interface goods {
+  variations: Array<variations>;
+  products: Array<products>;
+}
+interface variations {
+  name: string;
+  values?: Array<variations>;
+}
+interface products {
+  id: string;
+  variationMappings: Array<good>;
+}
+interface good {
+  name: string;
+  value: string;
+}
 /**
  * 如下示例，通过选项显示目标price并只通过id保存该操作
  */
-const merchandise = {
+const merchandise: goods = {
   variations: [
     {
       name: '颜色',
@@ -76,7 +99,7 @@ const merchandise = {
   ],
   products: [
     {
-      id: 1,
+      id: '1',
       variationMappings: [
         { name: '颜色', value: '白色' },
         { name: '尺码', value: '39' },

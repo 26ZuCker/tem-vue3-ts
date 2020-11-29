@@ -12,3 +12,12 @@ const a: c = {
   age: 1,
   gender: '',
 };
+
+function sum(...params: number[]): number {
+  let res = 0;
+  params.reduce((prev: number, cur: number, curIndex: number) => {
+    return (prev += cur);
+  }, 0);
+  return res;
+}
+sum();

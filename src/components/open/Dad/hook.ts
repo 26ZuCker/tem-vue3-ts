@@ -18,10 +18,6 @@ const DadHook = () => {
   };
 };
 /**
- * 通过接受一个参数，可以动态改变hook
+ * 统一具名导出一个返回值为与当前组件有关的所有hook的对象和与当前组件有关的interface
  */
-export default DadHook;
-/**
- * 默认导出一个返回值为与当前组件有关的所有hook的对象，具名导出与当前组件有关的interface
- */
-export { DadProps };
+export { DadHook, DadProps };

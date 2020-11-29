@@ -4,7 +4,7 @@
 </template>
 <script lang="ts">
 import Son from "../Son/Son.vue";
-import DadHook, { DadProps } from "./hook";
+import { DadHook, DadProps } from "./hook";
 export default {
   components: { Son },
   setup() {
@@ -12,9 +12,9 @@ export default {
     return {
       a,
       b,
-      DadOnMounted
+      DadOnMounted,
     };
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

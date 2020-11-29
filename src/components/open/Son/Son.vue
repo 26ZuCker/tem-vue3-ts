@@ -1,15 +1,15 @@
-<template> </template>
+<template></template>
 <script lang="ts">
-import SonHook, { SonProps } from "./hook";
+import { SonHook, SonProps } from "./hook";
 export default {
   setup(props: SonProps, context) {
     const { a, SonOnMounted } = SonHook();
     SonOnMounted();
     return {
       a,
-      SonOnMounted
+      SonOnMounted,
     };
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
