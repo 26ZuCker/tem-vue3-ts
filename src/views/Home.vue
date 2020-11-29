@@ -15,9 +15,9 @@ import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 export default defineComponent({
   name: "Home",
   components: {
-    HelloWorld
+    HelloWorld,
   },
 
-  setup(props: Data, context: SetupContext) {}
+  setup(props: Data, context: SetupContext) {},
 });
 </script>

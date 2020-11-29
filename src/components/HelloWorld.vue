@@ -1,4 +1,6 @@
-<template> </template>
+<template>
+  <div>HelloWorld</div>
+</template>
 
 <script lang="ts">
 import { defineComponent, SetupContext } from "vue";
@@ -6,9 +8,11 @@ import { defineComponent, SetupContext } from "vue";
 export default defineComponent({
   name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
   },
-  setup(props, context: SetupContext) {}
+  setup(props, context: SetupContext) {
+    return {};
+  },
 });
 </script>
 
