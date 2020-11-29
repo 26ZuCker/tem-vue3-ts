@@ -46,7 +46,11 @@ export default {
     const onClickRight = () => {
       router.push('/todoList')
     }
-
+/**
+ * 写法更改：
+ * 事件绑定
+ * 指令代替
+ */
     return () => {
       return (
         <div style="background:#f7f8fa">
