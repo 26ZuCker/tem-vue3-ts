@@ -20,3 +20,20 @@ Person.prototype = {
     console.log('My name is ' + this.name, ", I'm " + this.age + ' years old!');
   },
 };
+
+const a = { name: 'a' };
+
+console.log(a);
+
+console.log(a.toString());
+const b = ['1', '2'];
+
+console.log(b);
+//重写：1,2
+console.log(b.toString());
+//原生：function Object() { [native code] }
+console.log(Object.toString(b));
+//原生原型：[object Object]
+console.log(Object.prototype.toString(b));
+//原生但call：[object Array]
+console.log(Object.prototype.toString.call(b));

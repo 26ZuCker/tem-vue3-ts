@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>snabbdom更新dom</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="../../../node_modules/snabbdom/dist/snabbdom.js"></script>
+  <script>
+
+    const obj={}
+    //h相当于render即返回vdom结构
+    const {init,h}=snabbdom
+
+    /**获取patch：对比两个vdom并执行dom操作 */
+    const patch=init([])
+    /**保存旧的vdom */
+    let vnode
+
+    /**响应式 */
+    function defineReactive(obj,key,val){
+      Object.defineProperty(obj,key,{
+        get(){
+          return val
+        },
+        set(newVal){
+          if(newVal!==val){
+            val=newVal
+            update()
+          }
+        }
+      })
+    }
+    
+    function update(){
+      //app.innerText=obj.foo
+    }
+
+    defineReactive(obj,'foo',new Date().toLocaleString())
+    //执行patch
+    vnode=patch(app,h('div#app',obj.foo))
+    console.log(vnode)
+
+    setInterval(()=>{
+      obj.foo=new Date().toLocaleString()
+    },1000)
+  </script>
+</body>
+</html>
