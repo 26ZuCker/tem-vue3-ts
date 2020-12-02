@@ -1,11 +1,8 @@
 {
-  "name": "webpack",
+  "name": "webpack-plugin",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts": {
-    "dev": ""
-  },
   "dependencies": {},
   "devDependencies": {
     "webpack": "^5.9.0",

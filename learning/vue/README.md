@@ -107,7 +107,7 @@ setInterval(() => {
 }, 1000);
 ```
 
-#### patch 前
+#### patch 前 95
 
 执行`vm.$mount`时
 
@@ -194,7 +194,7 @@ export function createPatchFunction(backend) {
 }
 ```
 
-#### diff 前后 94
+#### diff 前后
 
 patch 分为增删真实 dom 和比较两个 vdom 并将新 vdom 取代旧 vdom
 
@@ -208,8 +208,10 @@ patch 实现先进行树级别的比较，共三种情况：
 //core\instance\lifecycle.js
 //对于初始化和更新节点，patch接收两种参数
 export function lifecycleMixin(Vue: Class<Component>) {
+  //获取组件实例
   const vm: Component = this;
   const prevVNode = vm._vnode;
+
   //先判断是否已存在vnode，无则初始化传入真实dom
   if (!prevVnode) {
     vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */);
@@ -233,6 +235,7 @@ export function createPatchFunction(backend) {
     }
 
     let isInitialPatch = false;
+    //结点新增和更新即dom操作的流程相当于异步更新
     const insertedVnodeQueue = [];
 
     //旧结点不存在则增加，真正初始化该组件所要创建结点是进入下方else中的else的createElm()
@@ -273,22 +276,92 @@ export function createPatchFunction(backend) {
             }
             //...
           }
-          // either not server-rendered, or hydration failed.
-          // create an empty node and replace it
+          //非SSR或激活则新建代表一个空元素结点的vdom并代替传入的参数oldVnode
           oldVnode = emptyNodeAt(oldVnode);
         }
 
-        // replacing existing element
+        /**
+         * 下方操作解释初始化流程
+         * oldElm指向#app的标签，parentElm指向<body></body>
+         * patch实际是直接在parentElm内的尾部追加，然后再移除旧的，而非替换旧的真实dom，原因：把新结点当成一整棵树并在所有的真实dom都创建完后，再一次性追加到真实dom的父结点内而不是在diff的同时就替换真实dom
+         * <body>
+         *   <div id="app">
+         *      <h1>vdom</h1>
+         *      <p>{{foo}}</p>
+         *   </div>
+         * </body>
+         *
+         * 先会变成如下
+         *
+         * <body>
+         *   <div id="app">
+         *      <h1>vdom</h1>
+         *      <p>{{foo}}</p>
+         *   </div>
+         *   <div id="app">
+         *      <h1>vdom</h1>
+         *      <p>foo</p>
+         *   </div>
+         * </body>
+         *
+         * 最后变成
+         *
+         * <body>
+         *   <div id="app">
+         *      <h1>vdom</h1>
+         *      <p>foo</p>
+         *   </div>
+         * </body>
+         */
+        //新建vdom中的属性elm指向需要生成的整个vdom
         const oldElm = oldVnode.elm;
+        //获取其父结点
         const parentElm = nodeOps.parentNode(oldElm);
 
-        //传入四个参数，由vdom创建真实dom
+        //传入四个参数，插入旧的真实dom
+        //vdom -> 真实dom
         createElm(
           vnode,
           insertedVnodeQueue,
           oldElm._leaveCb ? null : parentElm,
           nodeOps.nextSibling(oldElm)
         );
+
+        // update parent placeholder node element, recursively
+        if (isDef(vnode.parent)) {
+          let ancestor = vnode.parent;
+          const patchable = isPatchable(vnode);
+          while (ancestor) {
+            for (let i = 0; i < cbs.destroy.length; ++i) {
+              cbs.destroy[i](ancestor);
+            }
+            ancestor.elm = vnode.elm;
+            if (patchable) {
+              for (let i = 0; i < cbs.create.length; ++i) {
+                cbs.create[i](emptyNode, ancestor);
+              }
+              // invoke insert hooks that may have been merged by create hooks.
+              // e.g. for directives that uses the "inserted" hook.
+              const insert = ancestor.data.hook.insert;
+              if (insert.merged) {
+                // start at index 1 to avoid re-invoking component mounted hook
+                for (let i = 1; i < insert.fns.length; i++) {
+                  insert.fns[i]();
+                }
+              }
+            } else {
+              registerRef(ancestor);
+            }
+            ancestor = ancestor.parent;
+          }
+        }
+
+        //插入新的真实dom后移除旧的真实dom
+        if (isDef(parentElm)) {
+          removeVnodes([oldVnode], 0, 0);
+        } else if (isDef(oldVnode.tag)) {
+          invokeDestroyHook(oldVnode);
+        }
       }
     }
   };

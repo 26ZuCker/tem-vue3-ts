@@ -20,6 +20,7 @@ const typeMap: typeMap = {
  * 校验数据类型
  * @param {any} target
  * @param {string} type
+ * 可以通过正则直接匹配如/Object Array/.test(Object.prototype.toString.call(target));
  */
 function validateType(target: any, type: string) {
   if (type === 'ARRAY' || type === 'OBJECT') {

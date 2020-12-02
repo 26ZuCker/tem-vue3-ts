@@ -6,7 +6,10 @@ const isArray = function(target: any) {
   if (Array.isArray) {
     return Array.isArray(target);
   } else {
-    return Object.prototype.toString.call(target) === '[object Array]';
+    //const reg = /Object Array/;
+    const res = Object.prototype.toString.call(target);
+    //return reg.test(res);
+    return res === '[object Array]';
   }
 };
 export default isArray;
