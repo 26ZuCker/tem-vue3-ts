@@ -1,4 +1,4 @@
-let a = function () {
+let a = function() {
   console.log(this);
 };
 let b = () => {
@@ -7,7 +7,7 @@ let b = () => {
 let c = {
   a: 1,
   b: {
-    c: function () {
+    c: function() {
       console.log(this);
     },
     d: () => {
