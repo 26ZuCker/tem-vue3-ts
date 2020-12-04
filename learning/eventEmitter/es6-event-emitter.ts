@@ -1,27 +1,45 @@
-/* interface i_EventEmitter {
-  events: Map<any, any>;
-  $on: (eventName: string, listener: () => any) => object;
-  $once: (eventName: string, listener: () => any) => object;
-  $emit: (eventName: string, args?: Array<any> | any) => object;
-  $off: (eventName: string, listener: () => any) => object;
-  $allOff: (eventName: Array<string>) => void;
-} */
+import { callWithAsyncErrorHandling } from 'vue';
+
 class EventEmitter {
   events: Map<any, any>;
   constructor() {
     this.events = new Map();
   }
+  /**
+   *
+   * @param eventName 事件名
+   * @param listener
+   */
   $on(eventName: string, listener: () => any) {
     return this;
   }
+  /**
+   *
+   * @param eventName
+   * @param listener
+   */
   $once(eventName: string, listener: () => any) {
     return this;
   }
+  /**
+   *
+   * @param eventName
+   * @param args 以数组形式传入参数，在参数少的情况下call性能优于apply
+   */
   $emit(eventName: string, args?: Array<any> | any) {
     return this;
   }
+  /**
+   *
+   * @param eventName
+   * @param listener
+   */
   $off(eventName: string, listener: () => any) {
     return this;
   }
+  /**
+   *
+   * @param eventName
+   */
   $allOff(eventName: Array<string>) {}
 }
