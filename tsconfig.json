@@ -33,7 +33,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx", "src/configs/test.js", "src/configs/prod.js", "src/configs/dev.hs", "src/configs/common.js", "src/configs/build/plugin.js", "src/configs/build/loader.js", "src/configs/build/index.js", "src/configs/build/alias.js"
   ],
   "exclude": [
     "node_modules"

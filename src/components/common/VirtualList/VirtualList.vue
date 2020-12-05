@@ -3,13 +3,14 @@
   <div></div>
 </template>
 <script lang='ts'>
-import VirListHook, { VirListProps, SetupContext } from "./hook";
+import { VirListHook, VirListProps, SetupContext } from "./hook";
 export default {
   inheritAttrs: false,
-  name: "VirList",
+  name: "VirtualList",
   components: {},
   setup(props: VirListProps, context: SetupContext) {
     const { attrs, emit, slots } = context;
+    const {} = VirListHook();
     return {};
   },
   props: {},

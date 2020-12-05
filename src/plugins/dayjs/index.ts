@@ -1,4 +1,4 @@
-import { App } from 'vue';
+import { App, h } from 'vue';
 /**
  * 集成dayjs插件
  * 使用：app.use(plugin-name, options)
@@ -13,6 +13,11 @@ export default {
     //混入
     app.mixin({
       created() {},
+    });
+    app.component('left', {
+      render() {
+        return h('div');
+      },
     });
     //挂载全局属性
     app.config.globalProperties.$formatTime = () => {};

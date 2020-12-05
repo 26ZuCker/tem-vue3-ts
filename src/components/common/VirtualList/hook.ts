@@ -11,15 +11,16 @@ import {
   onBeforeUnmount,
   SetupContext,
 } from 'vue';
+
 interface VirListProps {}
-const VirListHook = () => {
-  return {};
-};
 /**
  * 入口函数
  */
-export default VirListHook;
+const VirListHook = () => {
+  return {};
+};
+
 /**
  * 类型
  */
-export { VirListProps, SetupContext };
+export { VirListHook, VirListProps, SetupContext };
