@@ -1,4 +1,3 @@
-//参考https://mp.weixin.qq.com/s/4QpR9ElbFZwuNH2pcoI_mA
 export * from './Timer';
 export * from './Behavior';
 export * from './Store';
