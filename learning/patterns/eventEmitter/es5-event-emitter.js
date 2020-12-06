@@ -1,10 +1,15 @@
 (function() {
+  //为何此处用==而非===？
   var root =
     (typeof self == 'object' && self.self == self && self) ||
     (typeof global == 'object' && global.global == global && global) ||
     this ||
     {};
 
+  /**
+   * 判断监听器是否合法
+   * @param {*} listener
+   */
   function isValidListener(listener) {
     if (typeof listener === 'function') {
       return true;
@@ -15,6 +20,11 @@
     }
   }
 
+  /**
+   * 实现Array.prototype.indexOf
+   * @param {*} array
+   * @param {*} item
+   */
   function indexOf(array, item) {
     var result = -1;
     item = typeof item === 'object' ? item.listener : item;
@@ -35,7 +45,9 @@
 
   EventEmitter.VERSION = '1.0.0';
 
+  //构造原型链
   var proto = EventEmitter.prototype;
+  proto.constructor = EventEmitter;
 
   /**
    * 添加事件

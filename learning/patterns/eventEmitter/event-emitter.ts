@@ -1,5 +1,6 @@
-import { callWithAsyncErrorHandling } from 'vue';
-
+/**
+ * ts基于es6语法
+ */
 class EventEmitter {
   events: Map<any, any>;
   constructor() {

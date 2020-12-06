@@ -1,7 +1,6 @@
 import { App } from 'vue';
-import component from './component';
 import directive from './directive';
-import hook from './hook';
+import component from './component.vue';
 /**
  * 集成dayjs插件
  * 使用：app.use(plugin-name, options)
@@ -13,6 +12,6 @@ export default {
     //自定义指令
     app.directive('right-click', directive);
     //自定义组件
-    app.component('RCMenu', component(hook));
+    app.component('RCMenu', component);
   },
 };

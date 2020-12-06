@@ -9,9 +9,11 @@ function str(s) {
   return s.length > 0 ? s.toLowerCase() : null;
 }
 /**
- *
+ * 订阅者
  */
 class Handler {
+  fns: any[];
+  datas: any[];
   constructor() {
     this.fns = [];
     this.datas = [];
@@ -56,6 +58,7 @@ class Handler {
  * event bus本质即发布订阅模式，该类为发布者，Handler为订阅者
  */
 class EventBus {
+  handers: Map<any, any>;
   constructor() {
     /**
      * 由于需要频繁增删属性，采用map效率由于object
@@ -79,7 +82,7 @@ class EventBus {
       fnOrData = temp;
       throw new Error('必须提供事件函数');
     }
-    const handle = this.handers.get(eventName);
+    let handle = this.handers.get(eventName);
     if (handle == null) {
       handle = new Handler();
       this.handers.set(eventName, handle);
@@ -104,7 +107,7 @@ class EventBus {
       fnOrData = temp;
       throw new Error('必须提供事件函数');
     }
-    const handle = this.handers.get(eventName);
+    let handle = this.handers.get(eventName);
     if (handle == null) {
       handle = new Handler();
       this.handers.set(eventName, handle);
