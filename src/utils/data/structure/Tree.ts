@@ -17,9 +17,9 @@ class VariationSearchMap {
 
     const { variations, products } = apiData;
 
-    const addNode = (root, deep: number) => {
+    const addNode = (root: any, deep: number) => {
       const variationName = variations[deep].name;
-      const variationValues = variations[deep].values;
+      const variationValues = variations[deep].values!;
 
       for (let i = 0; i < variationValues.length; i++) {
         const nodeName = `${variationName}：${variationValues[i].name}`;
