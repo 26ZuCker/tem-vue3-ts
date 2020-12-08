@@ -1,3 +1,6 @@
+/**
+ * 通过IIFE和闭包实现类
+ */
 var observer = (function() {
   var topics = [];
   return {
@@ -56,6 +59,7 @@ var observer = (function() {
   };
 })();
 
+//判断当前宿主：node或浏览器
 var root =
   (typeof self == 'object' && self.self == self && self) ||
   (typeof global == 'object' && global.global == global && global) ||

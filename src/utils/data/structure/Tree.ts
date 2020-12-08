@@ -17,6 +17,11 @@ class VariationSearchMap {
 
     const { variations, products } = apiData;
 
+    /**
+     * 增加
+     * @param root
+     * @param deep
+     */
     const addNode = (root: any, deep: number) => {
       const variationName = variations[deep].name;
       const variationValues = variations[deep].values!;
@@ -106,6 +111,6 @@ const merchandise: goods = {
         { name: '性别', value: '男' },
       ],
     },
-    // 下面还有7个商品，我就不重复了
+    // 下面还有7个商品就不重复了
   ],
 };
