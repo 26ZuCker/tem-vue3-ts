@@ -10,7 +10,7 @@ export default {
   components: {},
   setup(props: VirListProps, context: SetupContext) {
     const { attrs, emit, slots } = context;
-    const {} = VirListHook();
+    const {} = VirListHook(props);
     return {};
   },
   props: {},
