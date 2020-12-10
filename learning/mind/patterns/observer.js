@@ -5,7 +5,7 @@ var observer = (function() {
   var topics = [];
   return {
     /**
-     * 注册一个监听函数
+     * 订阅，为该被观察者即主体对象假如增加观察者
      * @param {*} topic
      * @param {*} handler
      */
@@ -16,7 +16,7 @@ var observer = (function() {
       topics[topic].push(handler);
     },
     /**
-     * 发布即触发观察者的回调
+     * 发布，触发被观察者的状态变化回调即通知观察者
      * @param {*} topic
      * @param {*} info
      */
@@ -28,7 +28,7 @@ var observer = (function() {
       }
     },
     /**
-     * 移除一个观察者的某个监听回调
+     * 为该被观察者即主体对象移除指定观察者
      * @param {*} topic
      * @param {*} handler
      */
@@ -48,7 +48,7 @@ var observer = (function() {
       }
     },
     /**
-     * 移除一个观察者的所有监听回调
+     * 为该被观察者即主体对象移除所有观察者
      * @param {*} topic
      */
     removeAll: function(topic) {
@@ -59,18 +59,28 @@ var observer = (function() {
   };
 })();
 
-//判断当前宿主：node或浏览器
-var root =
-  (typeof self == 'object' && self.self == self && self) ||
-  (typeof global == 'object' && global.global == global && global) ||
-  this ||
-  {};
-
-if (typeof exports != 'undefined' && !exports.nodeType) {
-  if (typeof module != 'undefined' && !module.nodeType && module.exports) {
-    exports = module.exports = observer;
-  }
-  exports.observer = observer;
-} else {
-  root.observer = observer;
-}
+/**
+ * 通过IIFE和闭包简易实现主体类
+ */
+var Subject = (function() {
+  var observer_list = [];
+  return {
+    $add: function(obj) {
+      observer_list.push(obj);
+    },
+    $remove: function(obj) {},
+    $removeAll: function(obj) {
+      for (var i = 0; i < observer_list.length; i++) {
+        if (observer_list[i] === obj) {
+          observer_list.splice(i, 1);
+        }
+      }
+    },
+    $notify: function() {
+      var args = Array.prototype.slice.call(arguments, 0);
+      for (var i = 0; i < observer_list.length; i++) {
+        observer_list[i].update(args);
+      }
+    },
+  };
+})();

@@ -95,6 +95,29 @@
   };
 
   /**
+   * 触发事件
+   * @param  {String} eventName 事件名称
+   * @param  {Array} args 传入监听器函数的参数，以数组形式
+   * @return {Object} 可链式调用
+   */
+  proto.emit = function(eventName, args) {
+    var listeners = this.__events[eventName];
+    if (!listeners) return;
+
+    for (var i = 0; i < listeners.length; i++) {
+      var listener = listeners[i];
+      if (listener) {
+        listener.listener.apply(this, args || []);
+        if (listener.once) {
+          this.off(eventName, listener.listener);
+        }
+      }
+    }
+
+    return this;
+  };
+
+  /**
    * 删除事件
    * @param  {String} eventName 事件名称
    * @param  {Function} listener 监听器函数
@@ -120,29 +143,6 @@
   };
 
   /**
-   * 触发事件
-   * @param  {String} eventName 事件名称
-   * @param  {Array} args 传入监听器函数的参数，使用数组形式传入
-   * @return {Object} 可链式调用
-   */
-  proto.emit = function(eventName, args) {
-    var listeners = this.__events[eventName];
-    if (!listeners) return;
-
-    for (var i = 0; i < listeners.length; i++) {
-      var listener = listeners[i];
-      if (listener) {
-        listener.listener.apply(this, args || []);
-        if (listener.once) {
-          this.off(eventName, listener.listener);
-        }
-      }
-    }
-
-    return this;
-  };
-
-  /**
    * 删除某一个类型的所有事件或者所有事件
    * @param  {String[]} eventName 事件名称
    */
@@ -154,6 +154,7 @@
     }
   };
 
+  //判断当前宿主：node或浏览器
   if (typeof exports != 'undefined' && !exports.nodeType) {
     if (typeof module != 'undefined' && !module.nodeType && module.exports) {
       exports = module.exports = EventEmitter;
