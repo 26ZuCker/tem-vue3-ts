@@ -10,8 +10,14 @@ composition：title需要为ref即const title = ref(null)且在setup中返回即
   <div></div>
 </template>
 <script lang="ts">
-import {} from "vue";
+import { ref } from "vue";
 export default {
-  setup() {}
+  setup() {
+    /**
+     * 获取元素对象，相当于vue2中的ref
+     */
+    const title = ref(null);
+    console.log(title.value);
+  },
 };
 </script>

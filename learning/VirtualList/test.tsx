@@ -68,7 +68,7 @@ function reducer(state, action) {
               scrollHeight: 0
           }
       default:
-          throw new Error()
+        throw new Error()
   }
 }
 

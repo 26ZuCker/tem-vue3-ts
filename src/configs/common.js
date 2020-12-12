@@ -1,7 +1,7 @@
 module.exports = {
   // 项目打包生成目录
   outputDir: 'dist',
-  // 静态资源生成目录（相对于outputDir
+  // 静态资源生成目录相对于outputDir
   assetsDir: 'static',
   // 关闭线上源码
   productionSourceMap: false,
