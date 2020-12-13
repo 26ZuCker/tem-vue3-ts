@@ -15,7 +15,7 @@ const a: c = {
 
 function sum(...params: number[]): number {
   let res = 0;
-  params.reduce((prev: number, cur: number, curIndex: number) => {
+  params.reduce((prev: number, cur: number) => {
     return (prev += cur);
   }, 0);
   return res;

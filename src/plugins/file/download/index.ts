@@ -1,2 +1,3 @@
-function download() {}
-export default download;
+function download(option) {}
+const deDownloadOption = {};
+export { download, deDownloadOption };

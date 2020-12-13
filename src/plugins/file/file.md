@@ -1,6 +1,6 @@
 文件传输
 
-参考https://juejin.cn/post/6850037258863673357#heading-10
+参考https://juejin.cn/post/6850037258863673357
 
 1. 文件下载
 2. 大文件切片

@@ -1,2 +1,3 @@
-function upload() {}
-export default upload;
+function upload(option) {}
+const deUploadOption = {};
+export { upload, deUploadOption };
