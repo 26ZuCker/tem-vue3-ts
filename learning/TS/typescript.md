@@ -16,3 +16,5 @@
 #### 索引签名
 
 可以为 interface，class 添加
+
+使用`void 0`代替`undefined`，参考https://juejin.cn/post/6844903796973830158
