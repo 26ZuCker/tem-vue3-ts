@@ -11,3 +11,118 @@
 9. 所谓的事件监听：监听者监听目标所暴露的状态来派发即执行其绑定在监听者内的回调，换而言之，对于一个事件，派发者即监听者
 10. 与 api 有关的参数常用下划线命名，只与当前视图或逻辑有关的参数采用驼峰命名
 11. 一定要考虑入口文件的统一出口函数设计是否能实现 tree-shaking
+
+- ES
+  - context
+    - VO
+    - [[Scope]]
+      - 变量提升
+    - this
+  - prototype
+  - 类型
+    - let & const
+  - eventLoop
+  - iterable
+    - for & -in & -of
+    - [[iterable]]
+  - async
+    - Generator
+    - Promise
+    - async & await
+  - proxy
+  - HOC
+    - curry
+    - compose
+  - 设计思想
+    - 设计模式
+      - 建造型
+      - 开发型
+    - 四大原则
+    - 编程模式
+      - IOC
+      - OOP
+      - AOP & COP
+      - FP
+  - TS
+- node 即中台
+  - 原生模块
+  - eventLoop
+  - nginx
+  - docker
+  - redis
+  - 中台
+- 算法
+  - re
+  - bfs
+  - dp
+  - LRU
+- 框架
+  - vue
+    - 示例
+    - tsx
+    - 鉴权
+    - nuxt
+    - 优化
+    - 源码
+  - react
+- 工程化
+  - 规范
+    - eslint
+    - gitflow
+    - 命名规范
+    - 目录结构
+  - webpack 即打包
+    - 优化参考下方
+    - rollup & vite
+    - module-federation
+    - tree-shaking
+    - HMR
+    - plugin & loader
+  - babel
+  - 测试
+    - e2e
+    - unit
+  - micro-frontend
+  - 独立发布
+  - CI & CD
+  - 多端
+- 网络 & 浏览器
+  - css
+    - sass -> scss
+      - 选择器
+      - 新增特性
+    - 布局
+      - 水平
+      - 居中
+    - BFC
+  - http
+  - 渲染
+  - 安全
+- 工具 & 优化
+  - 正则
+  - canvas
+  - 小程序 & taro
+  - UI 库
+    - ant
+    - element
+  - lodash
+  - dayjs
+  - zlib
+  - brotli
+  - vuelidate
+  - 大文件
+    - 切片
+    - 合并
+    - 秒传
+  - 单点登录
+  - SSR
+  - 静态资源
+    - 图片
+    - 静态页面
+  - 时间切片
+  - 长列表
+    - 分页
+    - 虚拟列表
+    - 瀑布流
+  - 懒加载
+  - event-bus
