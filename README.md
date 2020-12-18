@@ -15,16 +15,40 @@
 - ES
   - context
     - VO
+      - AO
     - [[Scope]]
-      - 变量提升
+      - 提升
+        - 函数
+        - 变量
     - this
+      - 判断
+      - 五种
   - prototype
+    - 原型链
+    - class
+    - extends
+    - create
+    - 拷贝
+      - shadow
+      - deep
   - 类型
     - let & const
+    - null & undefined
+    - Number
+      - parseInt & float
+      - 精度丢失
+      - NaN
+      - Bigint
+    - String
+    - Array
+    - Symbol
+    - Map & Set
+    - WeakMap
+    - 类型转换
   - eventLoop
   - iterable
     - for & -in & -of
-    - [[iterable]]
+    - [[enumerable]]即 iterable
   - async
     - Generator
     - Promise
@@ -35,8 +59,22 @@
     - compose
   - 设计思想
     - 设计模式
-      - 建造型
-      - 开发型
+      - 创建型
+        - 工厂
+        - 单例
+        - 原型
+      - 行为型
+        - 观察者
+        - 发布订阅
+        - 策略
+        - 迭代器
+        - 中介者
+        - 访问者
+      - 结构型
+        - 代理
+        - 外观
+        - 装饰者
+        - 适配者
     - 四大原则
     - 编程模式
       - IOC
@@ -44,6 +82,9 @@
       - AOP & COP
       - FP
   - TS
+    - 新增关键字
+    - Generic
+    - Decorator
 - node 即中台
   - 原生模块
   - eventLoop
@@ -69,7 +110,7 @@
   - 规范
     - eslint
     - gitflow
-    - 命名规范
+    - 命名
     - 目录结构
   - webpack 即打包
     - 优化参考下方
@@ -79,6 +120,8 @@
     - HMR
     - plugin & loader
   - babel
+    - @babel
+    - babel-plugin-import
   - 测试
     - e2e
     - unit
@@ -88,16 +131,21 @@
   - 多端
 - 网络 & 浏览器
   - css
-    - sass -> scss
+    - scss <- sass
       - 选择器
-      - 新增特性
+        - 关系
+        - 伪类
+        - 伪元素
+      - 特性
     - 布局
       - 水平
       - 居中
     - BFC
+    - shallow
   - http
   - 渲染
   - 安全
+  - 事件机制
 - 工具 & 优化
   - 正则
   - canvas
@@ -105,6 +153,13 @@
   - UI 库
     - ant
     - element
+  - 监控
+    - 性能
+    - 错误
+      - 监察
+      - 上报
+  - 埋点
+  - pre-render
   - lodash
   - dayjs
   - zlib
