@@ -80,20 +80,29 @@ interface C {
 type c = keyof C;
 
 //!5
-//readonly只限制属性只读而不会把属性的属性也变成只读
+//readonly只限制属性只读而不会把属性的值也变成只读，后者需要手动实现一个递归实现DeepReadonly类型
+//参考https://segmentfault.com/a/1190000008108248
 const v = { k1: 1, k2: { k21: 2 } };
 const v_ro = v as Readonly<typeof v>;
-//递归实现deepReadonly
-type DeepReadonly<T> = {
-  readonly [P in keyof T]: DeepReadonly<T[P]>;
+/**
+ * 为每一个属性实现readonly
+ */
+type _Readonly<T> = {
+  readonly [P in keyof T]: T[P];
 };
-const v_deep_ro = (v as any) as DeepReadonly<typeof v>;
+/**
+ * 深层readonly
+ */
+type _DeepReadonly<T> = {
+  readonly [P in keyof T]: _DeepReadonly<T[P]>;
+};
+const v_deep_ro = (v as any) as _DeepReadonly<typeof v>;
 
 //!6
 //ts内置工具类型；Partial<T>，Required<T>
 
 //!7
-//合并类型
+//合并和联合类型
 
 //!8
 //判断类型is
@@ -113,17 +122,20 @@ let strLength1: number = (<string>someValue).length;
 let strLength2: number = (someValue as string).length;
 
 //!11
-//私有变量#和private
-//注意#需要在tsconfig内设置target为es6及以上，因为编译后是使用es6的WeakMap存储
-class Person {
-  #name: string;
-  private age:number
-  constructor(name: string,age:number) {
-    this.#name = name;
-    this.age=age
+//私有变量对属性声明私有表示只能在该类而无法通过子类和实例访问
+//#专用于js而private只在ts的编译层面实现私有即转换后相当于普通属性
+//注意#需要在tsconfig内设置target为es6及以上，因为编译后是通过WeakMap存储实现私有
+class Man {
+  // #name: string;
+  private age: number;
+  constructor(name: string, age: number) {
+    //this.#name = name;
+    this.age = age;
   }
   greet() {
-    console.log(`Hello, my name is ${this.#name}!`);
+    //console.log(`Hello, my name is ${this.#name}!`);
   }
 }
 
+//!12
+//as

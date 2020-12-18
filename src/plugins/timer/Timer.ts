@@ -2,7 +2,7 @@ import { i_TimeStore } from './Store';
 class Timer {
   id: number;
   static count: any;
-  fn: (...rest: _rest) => void;
+  fn: (...rest: _Rest) => void;
   timeout: number;
   restTime: number;
   isInterval: boolean;
@@ -16,7 +16,7 @@ class Timer {
    * @param {Number} timeout 定时器执行时间间隔
    * @param  {...any} arg 定时器其他参数
    */
-  constructor(isInterval = false, fn = () => {}, timeout = 0, ...arg: _rest) {
+  constructor(isInterval = false, fn = () => {}, timeout = 0, ...arg: _Rest) {
     this.id = ++Timer.count; // 定时器递增 id
     this.fn = fn;
     this.timeout = timeout;
@@ -32,7 +32,7 @@ class Timer {
 
     if (this.isInterval) {
       /* setInterval */
-      const cb = (...arg: _rest) => {
+      const cb = (...arg: _Rest) => {
         this.fn(...arg);
         /* timerId 为空表示被 clearInterval */
         if (this.timerId) this.timerId = setTimeout(cb, this.timeout, ...this.arg);
@@ -41,7 +41,7 @@ class Timer {
       return;
     }
     /* setTimeout  */
-    const cb = (...arg: _rest) => {
+    const cb = (...arg: _Rest) => {
       this.fn(...arg);
       timerStore.clear(this.id);
     };

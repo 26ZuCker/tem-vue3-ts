@@ -3,7 +3,7 @@ import { i_TimeStore, c_TimerStore } from './Store';
 import { onMounted, onUnmounted } from 'vue';
 import newObj from './index';
 
-const TimerBehavior = (TimerStore: i_TimeStore, isMiniProgram = false): _obj => {
+const TimerBehavior = (TimerStore: i_TimeStore, isMiniProgram = false): _Obj => {
   const nowMounted = onMounted(() => {
     this.$timerStore = newObj(TimerStore);
   });
@@ -16,11 +16,11 @@ const TimerBehavior = (TimerStore: i_TimeStore, isMiniProgram = false): _obj => 
   const onHide = () => {
     this.$timerStore.hide();
   };
-  const $setTimeout = (fn = () => {}, timeout = 0, ...arg: _rest) => {
+  const $setTimeout = (fn = () => {}, timeout = 0, ...arg: _Rest) => {
     const timer = new Timer(false, fn, timeout, ...arg);
     return this.$timerStore.addTimer(timer);
   };
-  const $setInterval = (fn = () => {}, timeout = 0, ...arg: _rest) => {
+  const $setInterval = (fn = () => {}, timeout = 0, ...arg: _Rest) => {
     const timer = new Timer(true, fn, timeout, ...arg);
     return this.$timerStore.addTimer(timer);
   };
@@ -30,7 +30,7 @@ const TimerBehavior = (TimerStore: i_TimeStore, isMiniProgram = false): _obj => 
   const $clearTimeout = (id: number) => {
     this.$timerStore.clear(id);
   };
-  const res: _obj = {
+  const res: _Obj = {
     lifeHooks: {
       nowMounted,
       nowUnmounted,

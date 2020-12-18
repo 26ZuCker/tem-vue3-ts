@@ -3,7 +3,7 @@
  * 参考https://mp.weixin.qq.com/s/TSaFOkKek0asJqdxDr1jxg
  */
 class VariationSearchMap {
-  tree: _obj;
+  tree: _Obj;
   constructor(apiData: goods) {
     this.tree = this.buildTree(apiData);
   }
@@ -13,7 +13,7 @@ class VariationSearchMap {
    * @param apiData
    */
   buildTree(apiData: goods) {
-    const tree: _obj = {};
+    const tree: _Obj = {};
 
     const { variations, products } = apiData;
 

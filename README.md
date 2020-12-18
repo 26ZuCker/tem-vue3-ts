@@ -88,8 +88,6 @@
 - node 即中台
   - 原生模块
   - eventLoop
-  - nginx
-  - docker
   - redis
   - 中台
 - 算法
@@ -125,6 +123,9 @@
   - 测试
     - e2e
     - unit
+  - 部署
+    - nginx
+    - docker
   - micro-frontend
   - 独立发布
   - CI & CD

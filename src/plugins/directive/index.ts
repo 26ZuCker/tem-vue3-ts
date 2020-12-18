@@ -1,7 +1,7 @@
 import { App } from 'vue';
 import focus from './focus';
 
-const directiveMap: _obj = {
+const directiveMap: _Obj = {
   focus,
 };
 /**
