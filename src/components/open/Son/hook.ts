@@ -1,29 +1,35 @@
-import { ref, reactive, onMounted, onBeforeUnmount, SetupContext } from 'vue';
+import {
+  ref,
+  reactive,
+  toRefs,
+  isRef,
+  readonly,
+  computed,
+  watch,
+  watchEffect,
+  onMounted,
+  onBeforeUnmount,
+  onUnmounted,
+  unref,
+} from 'vue';
 
-interface SonProps {}
-
-const a = ref(0);
-/**
- * 推荐使用interface装饰reactive
- */
-interface b {
-  name: string;
+function useAdd() {
+  const state = reactive({
+    todos: [
+      { name: 'BBQ', done: false },
+      { name: 'AAQ', done: false },
+    ],
+    val: 'ok',
+  });
+  const total = computed(() => state.val + 'zeng');
+  const addTwo = () => {
+    state.todos.push({ name: 'CCQ', done: true });
+  };
+  return {
+    state,
+    total,
+    addTwo,
+  };
 }
 
-const b = reactive<b>({
-  name: '',
-});
-
-const SonOnMounted = () => onMounted(() => {});
-
-const SonHook = () => {
-  return {
-    a,
-    b,
-    SonOnMounted,
-  };
-};
-/**
- * 统一具名导出一个返回值为与当前组件有关的所有hook的对象和与当前组件有关的interface
- */
-export { SonHook, SonProps };
+export default useAdd;

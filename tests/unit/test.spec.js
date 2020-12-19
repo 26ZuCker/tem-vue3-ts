@@ -8,6 +8,8 @@ function add(a, b) {
 describe('test', () => {
   it('test add', () => {
     //断言 assert
+    expect(add(1, 1)).toEqual(2);
     expect(add(1, 1)).toBe(2);
+    expect(add(1, 1)).toMatch(2);
   });
 });

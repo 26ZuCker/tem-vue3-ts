@@ -1,17 +1,31 @@
-<template></template>
-<script lang="ts">
-import { SonHook, SonProps } from "./hook";
+<template>
+  <input type="text" v-model="state.val" />
+  <ul>
+    <li @keyup.enter="addTwo" v-for="todo in state.todos" :key="todo.name">
+      {{ todo.name }}
+    </li>
+  </ul>
+</template>
+<script lang='ts'>
+import useAdd from "./hook";
+
+interface xxxProps {}
+
 export default {
-  setup(props: SonProps, context) {
-    const { a, SonOnMounted } = SonHook();
-    SonOnMounted();
+  inheritAttrs: false,
+  name: "",
+  components: {},
+  setup(props: xxxProps, context) {
+    const { attrs, emit, slots } = context;
+
+    const { state, total, addTwo } = useAdd();
+
     return {
-      a,
-      SonOnMounted,
+      state,
+      total,
+      addTwo,
     };
   },
 };
 </script>
-<style lang="scss" scoped>
-@import url("./Son.scss");
-</style>
+<style lang='scss' scoped></style>

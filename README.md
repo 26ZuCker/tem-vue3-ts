@@ -85,6 +85,7 @@
     - 新增关键字
     - Generic
     - Decorator
+  - polyfill 整合
 - node 即中台
   - 原生模块
   - eventLoop

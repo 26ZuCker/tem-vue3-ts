@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <button id="btn">click</button>
+</body>
+<script src="./reactivity.js"></script>
+<script>
+  const root = document.getElementById('app');
+root.addEventListener('app', () => {});
+
+const btn = document.getElementById('btn');
+btn.addEventListener('click', () => {
+  ++obj.age
+});
+
+const o = {
+  name: 'zeng',
+  age: 1,
+};
+
+const obj = reactive(o);
+const dle=computed(()=>++obj.age)
+effect(()=>{
+  root.innerHTML=`<h1>this year ${dle.value} </h1>`
+})
+</script>
+</html>

@@ -1,6 +1,24 @@
 ### 源码
 
+以下无标准 2 则默认为 vue3 源码解析
+
 目录结构 -> 数据响应式 -> 异步更新 -> DOM&diff
+
+#### composition
+
+对比 option API：
+
+- this 相当于黑盒即打包时难以进行 tree-shaking
+- 按业务即功能拆分代码且实现按需引用和打包
+
+对比 mixin：
+
+- 后者会产生命名重复的问题
+- 后者来源不清晰因为都挂载在 this 上而无法确定`this.name`来自哪个 mixin
+
+createApp()替代 new Vue()原因
+
+与 React 的 hook 实现区别
 
 #### component
 
@@ -46,9 +64,13 @@ export function createAppAPI<HostElement>(
 
 ##### vue-loader
 
+#### template compile
+
+由 complier-core/dom/sfc/ssr 构成
+
 #### 目录结构
 
-#### 异步更新
+#### 异步更新 2
 
 > eventLoop 简易流程：执行完一个宏任务 -> 执行完所有的微任务 -> UI RENDER -> 执行下一个宏任务
 
@@ -64,7 +86,7 @@ watcher 去重参考 observer/scheduler 的 queueWatcher，根据 watcher 的 id
 
 先执行一或多次 watcher.js 内的 update()，最终执行一次其 run()
 
-#### nextTick
+#### nextTick2
 
 目录 utils/next-tick
 
@@ -99,7 +121,7 @@ export function nextTick(cb?: Function, ctx?: Object) {
 }
 ```
 
-#### vdom
+#### vdom2
 
 优点：
 
@@ -443,3 +465,5 @@ export function createPatchFunction(backend) {
   ) {}
 }
 ```
+
+#### vdom3
