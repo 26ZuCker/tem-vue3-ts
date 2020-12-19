@@ -1,8 +1,54 @@
+### 源码
+
 目录结构 -> 数据响应式 -> 异步更新 -> DOM&diff
 
-### 目录结构
+#### component
 
-### 异步更新
+组件本质即一个包含各种实例 API 的对象，需要通过注册才能使用
+
+##### 注册
+
+所有自定义组件必须经过注册即全局`app.component()`或局部`component:{}`才能使用，否则会抛出错误
+
+```js
+//全局注册app.component()
+//runtime-core\src\apiCreateApp.ts
+export function createAppAPI<HostElement>(
+  render: RootRenderFunction,
+  hydrate?: RootHydrateFunction
+): CreateAppFunction<HostElement> {
+  return function createApp(rootComponent, rootProps = null) {
+    //...
+    //注册本质即hash保存
+    component(name: string, component?: Component): any {
+        //只传组件名即通过const com = app.component('com')获取组件实例
+        if (!component) {
+          return context.components[name]
+        }
+        context.components[name] = component
+        return app
+      },
+    //...
+  }
+
+//局部注册component:{} | '' | []
+//
+```
+
+##### 生成
+
+下面只讨论 vue3 中生成
+
+1. template
+2. render
+3. defineComponent
+4. 单文件组件
+
+##### vue-loader
+
+#### 目录结构
+
+#### 异步更新
 
 > eventLoop 简易流程：执行完一个宏任务 -> 执行完所有的微任务 -> UI RENDER -> 执行下一个宏任务
 
@@ -18,7 +64,7 @@ watcher 去重参考 observer/scheduler 的 queueWatcher，根据 watcher 的 id
 
 先执行一或多次 watcher.js 内的 update()，最终执行一次其 run()
 
-### nextTick
+#### nextTick
 
 目录 utils/next-tick
 
@@ -53,7 +99,7 @@ export function nextTick(cb?: Function, ctx?: Object) {
 }
 ```
 
-### vdom
+#### vdom
 
 优点：
 
@@ -62,7 +108,7 @@ export function nextTick(cb?: Function, ctx?: Object) {
 3. 兼容性：增加兼容性代码实现操作 dom 的原生 api
 4. 跨平台：只要保存一套数据结构即 vdom 可以根据传入 init()不同参数以获的不同的 patch 功能
 
-#### snabbdom
+##### snabbdom
 
 vue 和 react 都基于 snabbdom 实现 vdom 和 patch
 
@@ -107,7 +153,7 @@ setInterval(() => {
 }, 1000);
 ```
 
-#### patch 前 95
+##### patch 前 95
 
 执行`vm.$mount`时
 
@@ -194,7 +240,7 @@ export function createPatchFunction(backend) {
 }
 ```
 
-#### diff 前后
+##### diff 前后
 
 patch 分为增删真实 dom 和比较两个 vdom 并将新 vdom 取代旧 vdom
 
@@ -368,7 +414,7 @@ export function createPatchFunction(backend) {
 }
 ```
 
-#### diff 算法
+##### diff 算法
 
 ```js
 //core/vdom/patch.js

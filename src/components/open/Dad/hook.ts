@@ -1,5 +1,8 @@
 import { ref, reactive, onMounted, onBeforeUnmount, SetupContext } from 'vue';
 
+/**
+ * 组件本身需要接受的参数
+ */
 interface DadProps {}
 
 const a = ref(0);
@@ -10,7 +13,7 @@ const b = reactive({
 
 const DadOnMounted = () => onMounted(() => {});
 
-const DadHook = () => {
+const DadHook = (...rest: _Rest) => {
   return {
     a,
     b,

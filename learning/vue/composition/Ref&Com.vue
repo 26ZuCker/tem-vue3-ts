@@ -10,7 +10,7 @@ composition：title需要为ref即const title = ref(null)且在setup中返回即
   <div></div>
 </template>
 <script lang="ts">
-import { ref } from "vue";
+import { ref, computed, isRef, toRef, toRefs } from "vue";
 export default {
   setup() {
     /**
@@ -18,6 +18,19 @@ export default {
      */
     const title = ref(null);
     console.log(title.value);
+    /**
+     * 本质computed后getter返回的value为Ref类型
+     */
+    const comTitle = computed(() => title);
+    /**
+     * isRef判断是否属于Ref类型
+     */
+    console.log(isRef(comTitle));
+    // 默认解构
+    return {
+      title,
+      comTitle,
+    };
   },
 };
 </script>

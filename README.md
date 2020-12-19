@@ -108,7 +108,7 @@
   - 规范
     - eslint
     - gitflow
-    - 命名
+    - CR & 命名
     - 目录结构
   - webpack 即打包
     - 优化参考下方
