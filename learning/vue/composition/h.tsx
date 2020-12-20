@@ -1,7 +1,8 @@
-import { defineComponent,render,h,computed,createApp,isRef } from "vue";
+import { defineComponent,render,h,computed,createApp,isRef,createVNode } from "vue";
 import Son from '../Son/Son.vue'
 /**
- * 使用jsx语法必须使用defineComponent
+ * 使用jsx语法建议使用defineComponent即使后者本质上不做任何处理
+ * 而只是相当于明确了类型的原参数
  */
 const Son2 = defineComponent({
   components:{
@@ -21,6 +22,9 @@ const Son2 = defineComponent({
     )
   }
 })
+
+//源码实现上h也是返回createVNode
+createVNode
 
 //命令式渲染标签，用于手动增加元素节点
 //render(h('div'),document.getElementById('id')!)

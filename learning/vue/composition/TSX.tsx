@@ -1,12 +1,12 @@
-import { ref, reactive } from "vue";
-import { AddressList, NavBar, Toast, Popup } from "vant";
-import AddressEdit from './AddressEdit'
-import router from '@/router'
+import { ref, reactive, Teleport, KeepAlive, defineComponen, withModifiers } from 'vue';
+import { AddressList, NavBar, Toast, Popup } from 'vant';
+import AddressEdit from './AddressEdit';
+import router from '@/router';
 
 export default {
   setup() {
-    const chosenAddressId = ref('1')
-    const showEdit = ref(false)
+    const chosenAddressId = ref('1');
+    const showEdit = ref(false);
 
     const list = reactive([
       {
@@ -22,7 +22,7 @@ export default {
         tel: '1310000000',
         address: '浙江省杭州市拱墅区莫干山路 50 号',
       },
-    ])
+    ]);
     const disabledList = reactive([
       {
         id: '3',
@@ -30,52 +30,58 @@ export default {
         tel: '1320000000',
         address: '浙江省杭州市滨江区江南大道 15 号',
       },
-    ])
+    ]);
 
     const onAdd = () => {
-      showEdit.value = true
-    }
+      showEdit.value = true;
+    };
     const onEdit = (item: any, index: string) => {
       Toast('编辑地址:' + index);
-    }
+    };
 
     const onClickLeft = () => {
-      router.back()
-    }
+      router.back();
+    };
 
     const onClickRight = () => {
-      router.push('/todoList')
-    }
-/**
- * 写法更改：
- * 事件绑定
- * 指令代替
- */
+      router.push('/todoList');
+    };
+    /**
+     * 写法更改主要在对于指令替代使用，指令.修饰符，双括改为单
+     * 事件指令即v-on：
+     * v-model：
+     * v-bind：
+     * v-for：
+     * v-if和v-show：
+     * 注意jsx只能单个根节点
+     */
     return () => {
       return (
-        <div style="background:#f7f8fa">
+        <div style='background:#f7f8fa'>
           <NavBar
-            title="地址管理"
-            left-text="返回"
-            right-text="Todo"
+            title='地址管理'
+            left-text='返回'
+            right-text='Todo'
             left-arrow
             onClick-left={onClickLeft}
             onClick-right={onClickRight}
           />
+          <Teleport to='body'></Teleport>
+          <KeepAlive></KeepAlive>
           <AddressList
             vModel={chosenAddressId.value}
             list={list}
             disabledList={disabledList}
-            disabledText="以下地址超出配送范围"
-            defaultTagText="默认"
+            disabledText='以下地址超出配送范围'
+            defaultTagText='默认'
             onAdd={onAdd}
             onEdit={onEdit}
           />
-          <Popup vModel={[showEdit.value, 'show']} position="bottom" round style="height: 80%" >
+          <Popup vModel={[showEdit.value, 'show']} position='bottom' round style='height: 80%'>
             <AddressEdit />
           </Popup>
-        </div >
+        </div>
       );
     };
-  }
+  },
 };

@@ -57,6 +57,8 @@
   - HOC
     - curry
     - compose
+    - sleep
+  - eval
   - 设计思想
     - 设计模式
       - 创建型
@@ -78,9 +80,12 @@
     - 四大原则
     - 编程模式
       - IOC
+        - 依赖注入
       - OOP
       - AOP & COP
       - FP
+        - 函数定义
+        - 匿名函数
   - TS
     - 新增关键字
     - Generic
@@ -98,7 +103,15 @@
   - LRU
 - 框架
   - vue
-    - 示例
+    - api 示例
+    - router
+      - guard
+      - 源码
+    - vuex
+      - module
+      - mapActions
+      - 捕获 action 中的错误
+      - 源码
     - tsx
     - 鉴权
     - nuxt
@@ -148,13 +161,20 @@
   - 渲染
   - 安全
   - 事件机制
+  - DOM API
+  - BOM API
 - 工具 & 优化
+  - 自定义组件
+    - Dialog
+    - 长列表参考下方
+    - Popup
+    - Table
   - 正则
   - canvas
   - 小程序 & taro
   - UI 库
     - ant
-    - element
+    - element-plus
   - 监控
     - 性能
     - 错误
@@ -173,6 +193,8 @@
     - 秒传
   - 单点登录
   - SSR
+    - CSR & 同构
+    - hyrate
   - 静态资源
     - 图片
     - 静态页面

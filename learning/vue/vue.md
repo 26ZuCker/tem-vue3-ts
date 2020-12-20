@@ -1,6 +1,93 @@
+### tsx
+
+> 需要手动安装 babel 插件以实现`yarn add @vue/babel-plugin-jsx --dev`
+>
+> 参考：
+>
+> - https://github.com/vuejs/jsx-next#installation
+> - https://juejin.cn/post/6846687590704381959
+>
+> ```js
+> //babel.config.js
+> [
+>    //为使用jsx语法配置
+>     [
+>       '@vue/babel-plugin-jsx',
+>       {
+>         optimize: true,
+>       },
+>     ],
+>   ],
+> //eslint格式化配置，在vscode settings内加入
+> []:{}
+>
+> ```
+
+参考https://juejin.cn/post/6846687590704381959
+
+写法更改：
+
+- `v-bind.style="a" -> style={ a }`
+- 部分指令替代如下
+- 指令传入的修饰符改变
+- 双括改为单
+- 注意 jsx 只能单个根节点，实现 Fragment 需要通过`<></>`包裹即作为根节点
+- 建议使用 defineComponent() 以装饰输入的 options 类型为 Component
+- slot 通过 v-slot 和 slots 表示
+
+#### @
+
+通过 withModifiers 传入修饰符
+
+```js
+import { withModifiers, defineComponent } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const count = ref(0);
+
+    const inc = () => {
+      count.value++;
+    };
+
+    return () => <div onClick={withModifiers(inc, ['self'])}>{count.value}</div>;
+  },
+});
+```
+
+#### v-model
+
+```js
+<A v-model={[val, 'argument', ['modifier']]} />
+//相当于
+<A onUpdate:argument="val"></A>
+//h函数编译如下
+h(A, {
+  argument: val,
+  argumentModifiers: {
+    modifier: true
+  },
+  'onUpdate:argument': $event => val = $event
+})
+```
+
+#### 自定义指令
+
+```js
+v-custom={[val, 'arg', ['a', 'b']]}
+```
+
+#### v-for
+
+#### v-if & show
+
+#### slot
+
 ### 源码
 
 以下无标准 2 则默认为 vue3 源码解析
+
+parse -> optimize -> codegen
 
 目录结构 -> 数据响应式 -> 异步更新 -> DOM&diff
 
