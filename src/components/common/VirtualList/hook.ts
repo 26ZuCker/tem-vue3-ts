@@ -12,14 +12,16 @@ import {
   SetupContext,
 } from 'vue';
 
-interface VirListProps {}
+interface VirListProps {
+  reqUrl?: string;
+  totalList?: object;
+}
 /**
  * 入口函数
  */
-const VirListHook = () => {
+const VirListHook = (props: VirListProps) => {
   return {};
 };
-
 /**
  * 类型
  */
