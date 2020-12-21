@@ -1,3 +1,132 @@
+### api
+
+#### reactivity
+
+#### 组件通信
+
+父子：
+
+1. slot
+
+参考下方下方
+
+2. props
+3. `emits & attrs`
+
+```js
+//非props和emits定义的属性即attribute将会作为attrs对象的一部分
+//通过inheritAttrs: false禁用attribute继承，建议开启以实现手动选择性继承属性
+//常见情况：需要将attribute不应用于根节点，而是仅仅应用其中的某些子元素
+app.component('Dad', {
+  template: `
+    <div class="date-picker">
+      <input type="datetime" title="a" @change="onChange" />
+    </div>
+  `,
+  emits: {},
+});
+
+//不使用inheritAttrs: false则相当于<div class="date-picker" v-bind="$attrs">
+//注意：使用Fragment即具备多个根节点的子组件必须为某个元素绑定v-bind="$attrs"
+//解构context或进行this.$attrs解构其中的属性
+app.component('Son1', {
+  inheritAttrs: false,
+  template: `
+    <div class="date-picker">
+      <input type="datetime"/>
+      <input type="text"/>
+    </div>
+  `,
+  setup(_, { attrs, emits, slots }) {
+    const {} = attrs;
+  },
+});
+
+//或进行v-bind绑定所有attribute
+app.component('Son2', {
+  inheritAttrs: false,
+  template: `
+    <div class="date-picker">
+      <input type="datetime" v-bind="$attrs" />
+    </div>
+  `,
+});
+```
+
+4. event bus -> vuex
+
+```js
+//event-bus具体实现参考tool&opti，以下为如何将其作为plugin注入app
+```
+
+5. provide & inject
+
+#### Teleport & slot
+
+##### 示例
+
+二者都是从子组件角度考虑即前者该置于父组件内何处，区别：
+
+- Teleport 子组件可以任意
+- slot 由
+
+```js
+// 父组件示例
+app.component('Dad', {
+  inheritAttrs: false,
+  render() {
+    return (
+      <div id="d1">
+        <slot name="s1"></slot>
+      </div>
+      <slot name="default"></slot>
+      <div id="d2"></div>
+      <div class="d3"></div>
+    );
+  },
+});
+// 子组件示例
+app.component('Son', {
+  inheritAttrs: false,
+  setup (_, { slots }) {
+    return {
+      slots
+    }
+  },
+  //slot示例，注意render优先级最高
+  template: `
+    <div></div>
+  `,
+  //Teleport示例
+  render () {
+    return (
+      <div>
+        <div></div>
+        <Teleport to='body'></Teleport>
+      </div>
+      <Teleport to='#d2'></Teleport>
+      <Teleport to='.d3'></Teleport>
+    );
+  },
+});
+```
+
+##### 作用域插槽
+
+slot
+
+#### Keep-alive
+
+#### asyncDefineComponent
+
+#### 自定义指令
+
+### 插件开发
+
+### router
+
+### vuex
+
 ### tsx
 
 > 需要手动安装 babel 插件以实现`yarn add @vue/babel-plugin-jsx --dev`
@@ -17,10 +146,11 @@
 >         optimize: true,
 >       },
 >     ],
->   ],
+> ],
 > //eslint格式化配置，在vscode settings内加入
-> []:{}
->
+>   "[typescriptreact]": {
+>    "editor.defaultFormatter": "esbenp.prettier-vscode"
+>  },
 > ```
 
 参考https://juejin.cn/post/6846687590704381959
@@ -85,11 +215,11 @@ v-custom={[val, 'arg', ['a', 'b']]}
 
 ### 源码
 
-以下无标准 2 则默认为 vue3 源码解析
+以下无标注 2 则默认为 vue3 源码解析
 
 parse -> optimize -> codegen
 
-目录结构 -> 数据响应式 -> 异步更新 -> DOM&diff
+目录结构 -> 数据响应式 -> 异步更新 -> DOM & diff
 
 #### composition
 
@@ -109,7 +239,22 @@ createApp()替代 new Vue()原因
 
 #### component
 
-组件本质即一个包含各种实例 API 的对象，需要通过注册才能使用
+组件本质即一个包含各种实例 API 的对象，使用流程：生成 -> 挂载于容器 -> 全局或局部注册
+
+#### name
+
+建议一直具备 name 属性，用于：
+
+##### 生成
+
+下面只讨论 vue3 中生成
+
+1. template
+2. render
+3. defineComponent
+4. 单文件组件
+
+##### 挂载
 
 ##### 注册
 
@@ -139,15 +284,6 @@ export function createAppAPI<HostElement>(
 //局部注册component:{} | '' | []
 //
 ```
-
-##### 生成
-
-下面只讨论 vue3 中生成
-
-1. template
-2. render
-3. defineComponent
-4. 单文件组件
 
 ##### vue-loader
 
