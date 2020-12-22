@@ -124,6 +124,7 @@
     - gitflow
     - CR & 命名
     - 目录结构
+    - http 请求参考工具 & 优化/axios
   - webpack 即打包
     - 优化参考下方
     - rollup & vite
@@ -183,6 +184,9 @@
       - 上报
   - 埋点
   - pre-render
+  - axios
+    - 封装
+    - api 管理
   - lodash
   - dayjs
   - zlib

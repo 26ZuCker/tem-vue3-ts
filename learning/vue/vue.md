@@ -11,7 +11,11 @@
 参考下方下方
 
 2. props
-3. `emits & attrs`
+3. ref
+4. parent & root
+5. `emits & attrs`
+
+注意： vue3 取消 listeners
 
 ```js
 //非props和emits定义的属性即attribute将会作为attrs对象的一部分
@@ -117,9 +121,55 @@ slot
 
 #### Keep-alive
 
-#### asyncDefineComponent
+#### Suspense
 
-#### 自定义指令
+即通过 asyncDefineComponent
+
+### 自定义指令
+
+参考：
+
+- https://juejin.cn/post/6908492497261953038
+
+#### v-click-outside
+
+外部点击指令：当点击非绑定元素会进行元素隐藏
+
+#### v-intersect
+
+元素监视器：检测元素在用户视图中是否可见
+
+#### v-resize
+
+缩放监听器：窗口进行缩放时的监听指令
+
+#### v-scroll
+
+滚动监视器： 可以灵活观察绑定的元素滚动变化
+
+#### v-touch
+
+触控监视器：可以灵活监视移动端当中的触摸行为，并产生回调
+
+#### v-auth
+
+权限监视器：主要做按钮级别权限校验和页面权限校验
+
+#### v-copy
+
+文本复制：
+
+#### v-bind-key
+
+快捷键绑定：
+
+#### v-lazy
+
+图片懒加载：
+
+#### v-focus
+
+焦点：
 
 ### 插件开发
 
