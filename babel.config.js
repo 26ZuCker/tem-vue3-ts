@@ -6,10 +6,11 @@ module.exports = {
       'import',
       {
         libraryName: 'ant-design-vue',
+        //默认即可
         styleLibraryName: 'theme-chalk',
       },
     ],
-    //为使用jsx语法配置
+    //jsx语法配置
     [
       '@vue/babel-plugin-jsx',
       {

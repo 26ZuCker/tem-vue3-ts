@@ -87,5 +87,41 @@ function handleError(/* @type { string } */ error, /* @type { string } */ msg) {
 
 1. api 管理
 2. 获取响应结果
+
+```js
+// 类似于这样
+export function useRequest(url, params, config) {
+  // 统一维护的变量，最后return出去
+  const state = reactive({
+    loading: false,
+    error: false,
+    data: config.initialData,
+  });
+
+  const fetchFunc = () => {
+    state.loading = true;
+    // 做请求的公用逻辑
+    axios()
+      .then((response) => {
+        const result = response.data;
+        state.data = result.data;
+        state.loading = false;
+      })
+      .catch((err) => {
+        state.error = true;
+      });
+  };
+
+  onMounted(() => {
+    if (config.immediate) {
+      fetchFunc();
+    }
+  });
+
+  // toRefs 可以将state，拆解成多个ref，这样调用者就可以使用解构来拿到变量
+  return { ...toRefs(state), fetch: fetchFunc };
+}
+```
+
 3. 分析两种响应结果即对和错
 4. api 各自处理两种情况

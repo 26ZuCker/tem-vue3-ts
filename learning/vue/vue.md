@@ -181,10 +181,7 @@ slot
 
 > 需要手动安装 babel 插件以实现`yarn add @vue/babel-plugin-jsx --dev`
 >
-> 参考：
->
-> - https://github.com/vuejs/jsx-next#installation
-> - https://juejin.cn/post/6846687590704381959
+> 参考https://github.com/vuejs/jsx-next#installation
 >
 > ```js
 > //babel.config.js
@@ -197,13 +194,19 @@ slot
 >       },
 >     ],
 > ],
+>
 > //eslint格式化配置，在vscode settings内加入
 >   "[typescriptreact]": {
 >    "editor.defaultFormatter": "esbenp.prettier-vscode"
 >  },
+>
+> //使用SFC且ts开发需要配置：<script lang="tsx"></script>
 > ```
 
-参考https://juejin.cn/post/6846687590704381959
+参考:
+
+- https://juejin.cn/post/6846687590704381959
+- https://mp.weixin.qq.com/s/QoI9Jdb6phoFsZEjU-P6lw
 
 写法更改：
 

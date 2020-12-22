@@ -1,13 +1,19 @@
-import { ref, reactive, Teleport, KeepAlive, defineComponen, withModifiers } from 'vue';
+import { ref, reactive, Teleport, KeepAlive, defineComponent, withModifiers } from 'vue';
+
 import { AddressList, NavBar, Toast, Popup } from 'vant';
 import AddressEdit from './AddressEdit';
-import router from '@/router';
 
-export default {
+import Router, { createWebHistory, RouterOptions } from 'vue-router';
+const routerOptions: RouterOptions = {
+  history: createWebHistory(),
+  routes: [],
+};
+const router = Router.createRouter(routerOptions);
+
+export default defineComponent({
   setup() {
     const chosenAddressId = ref('1');
     const showEdit = ref(false);
-
     const list = reactive([
       {
         id: '1',
@@ -38,11 +44,9 @@ export default {
     const onEdit = (item: any, index: string) => {
       Toast('编辑地址:' + index);
     };
-
     const onClickLeft = () => {
       router.back();
     };
-
     const onClickRight = () => {
       router.push('/todoList');
     };
@@ -55,8 +59,8 @@ export default {
      * v-if和v-show：
      * 注意jsx只能单个根节点
      */
-    return () => {
-      return (
+    return (
+      <>
         <div style='background:#f7f8fa'>
           <NavBar
             title='地址管理'
@@ -77,11 +81,20 @@ export default {
             onAdd={onAdd}
             onEdit={onEdit}
           />
-          <Popup vModel={[showEdit.value, 'show']} position='bottom' round style='height: 80%'>
-            <AddressEdit />
-          </Popup>
         </div>
-      );
-    };
+        <Popup vModel={[showEdit.value, 'show']} position='bottom' round style='height: 80%'>
+          <AddressEdit />
+        </Popup>
+      </>
+    );
   },
-};
+  render() {
+    return (
+      <>
+        <div v-model='aa'></div>
+        <div v-show></div>
+        <div v-for></div>
+      </>
+    );
+  },
+});
