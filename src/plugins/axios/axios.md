@@ -1,6 +1,6 @@
 ## axios
 
-常用配置如下
+配置如下
 
 ```js
 axios.get(url, {
@@ -22,7 +22,6 @@ axios.get(url, {
   onUploadProgress,
   //中止请求
   cancelToken,
-
   //不常用的属性
   adapter,
   auth,

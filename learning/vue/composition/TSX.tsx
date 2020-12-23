@@ -51,6 +51,10 @@ export default defineComponent({
       router.push('/todoList');
     };
     /**
+     * 函数式组件，但本质只是通过函数返回的元素标签，不同于vue2中所谓的functional，尽管后者3中已取消
+     */
+    const com1=()=>(<h1>functional component</h1>)
+    /**
      * 写法更改主要在对于指令替代使用，指令.修饰符，双括改为单
      * 事件指令即v-on：
      * v-model：
@@ -60,7 +64,7 @@ export default defineComponent({
      * 注意jsx只能单个根节点
      */
     return (
-      <>
+      <d>
         <div style='background:#f7f8fa'>
           <NavBar
             title='地址管理'
@@ -71,7 +75,9 @@ export default defineComponent({
             onClick-right={onClickRight}
           />
           <Teleport to='body'></Teleport>
-          <KeepAlive></KeepAlive>
+          <KeepAlive>
+            {com1()}
+          </KeepAlive>
           <AddressList
             vModel={chosenAddressId.value}
             list={list}
@@ -85,7 +91,7 @@ export default defineComponent({
         <Popup vModel={[showEdit.value, 'show']} position='bottom' round style='height: 80%'>
           <AddressEdit />
         </Popup>
-      </>
+      </div>
     );
   },
   render() {

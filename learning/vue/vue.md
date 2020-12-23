@@ -1,3 +1,5 @@
+## vue
+
 ### api & tips
 
 #### reactivity
@@ -203,7 +205,15 @@ const router = createRouter({
 export default router;
 ```
 
+#### api
+
+#### hash & history
+
 ### vuex
+
+#### api
+
+#### module & map
 
 ### tsx
 
@@ -225,7 +235,9 @@ h('div', {
 - 子节点不会作为以 children 这个名字在 props 中传入，而是通过 slots 去取
 - 多个子节点是以数组的形式传入，而不是像 React 那样作为分开的参数
 
-性能参考https://github.com/hujiulong/blog/issues/11
+考虑到与普通 SFC 即 template 写法的性能差异，参考https://github.com/hujiulong/blog/issues/11，建议只有以下场景使用 jsx 即可：
+
+- model
 
 #### 配置
 
@@ -313,6 +325,8 @@ v-custom={[val, 'arg', ['a', 'b']]}
 #### v-if & show
 
 #### slot
+
+#### 函数式组件
 
 ### 源码
 
