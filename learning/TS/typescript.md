@@ -1,4 +1,6 @@
-配置本地环境
+## typescript
+
+配置本地环境：
 
 1. 全局安装 ts 以命令行识别 tsc 指令
 2. 局部安装 ts 以当前项目的各依赖库能使用 ts 语法
@@ -13,6 +15,20 @@
 - 接口
 - 装饰器
 
-#### 索引签名
+### 关键字
+
+### 索引签名
 
 可以为 interface，class 添加
+
+### 拓展
+
+```ts
+// 扩展全局对象
+declare global {
+  // 扩展websocket对象为其添加sendObj方法
+  interface WebSocket {
+    sendObj(obj: JSON): void;
+  }
+}
+```

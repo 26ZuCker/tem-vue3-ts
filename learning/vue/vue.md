@@ -1,15 +1,14 @@
-### api
+### api & tips
 
 #### reactivity
+
+#### HOC
 
 #### 组件通信
 
 父子：
 
-1. slot
-
-参考下方下方
-
+1. slot：参考下方
 2. props
 3. ref
 4. parent & root
@@ -125,7 +124,7 @@ slot
 
 即通过 asyncDefineComponent
 
-### 自定义指令
+### directive
 
 参考：
 
@@ -171,18 +170,69 @@ slot
 
 焦点：
 
-### 插件开发
+### @vue/plugin
 
 ### router
+
+```ts
+//常用配置如下
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import Home from '../views/Home.vue';
+
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+  },
+  {
+    path: '/about',
+    name: 'About',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+  },
+];
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
+});
+
+export default router;
+```
 
 ### vuex
 
 ### tsx
 
-> 需要手动安装 babel 插件以实现`yarn add @vue/babel-plugin-jsx --dev`
->
-> 参考https://github.com/vuejs/jsx-next#installation
->
+本质通过@vue/babel-plugin-jsx 将 jsx 转换为 h 函数，且相比于 vue2 将 attrs 完全展开
+
+```js
+<div class={['foo', 'bar']} style={{ margin: '10px' }} id="foo" onClick={foo} />
+//转换结果如下
+h('div', {
+ class: ['foo', 'bar'],
+ style: { margin: '10px' }
+ id: 'foo',
+ onClick: foo
+})
+```
+
+与 hooks 区别：
+
+- 子节点不会作为以 children 这个名字在 props 中传入，而是通过 slots 去取
+- 多个子节点是以数组的形式传入，而不是像 React 那样作为分开的参数
+
+性能参考https://github.com/hujiulong/blog/issues/11
+
+#### 配置
+
+需要手动安装 babel 插件以实现`yarn add @vue/babel-plugin-jsx --dev`，参考https://github.com/vuejs/jsx-next#installation
+
+使用 SFC 且 ts 开发需要配置：<script lang="tsx"></script>
+
 > ```js
 > //babel.config.js
 > [
@@ -199,8 +249,6 @@ slot
 >   "[typescriptreact]": {
 >    "editor.defaultFormatter": "esbenp.prettier-vscode"
 >  },
->
-> //使用SFC且ts开发需要配置：<script lang="tsx"></script>
 > ```
 
 参考:
@@ -220,7 +268,7 @@ slot
 
 #### @
 
-通过 withModifiers 传入修饰符
+假如没有安装@vue/babel-plugin-jsx 则通过 withModifiers 传入修饰符，否则一律采用 v-show 即可
 
 ```js
 import { withModifiers, defineComponent } from 'vue';
@@ -294,7 +342,7 @@ createApp()替代 new Vue()原因
 
 组件本质即一个包含各种实例 API 的对象，使用流程：生成 -> 挂载于容器 -> 全局或局部注册
 
-#### name
+##### name
 
 建议一直具备 name 属性，用于：
 
