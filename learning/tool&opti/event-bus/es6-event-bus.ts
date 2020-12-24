@@ -58,12 +58,13 @@ class Handler {
  * event bus本质即发布订阅模式，该类为发布者，Handler为订阅者
  */
 class EventBus {
-  handers: Map<any, any>;
+  handers: WeakMap<any, any>;
   constructor() {
     /**
-     * 由于需要频繁增删属性，采用map效率由于object
+     * 需要频繁增删属性则采用map效率由于object
+     * 不需要对数据进行所以采用weak
      */
-    this.handers = new Map();
+    this.handers = new WeakMap();
   }
   /**
    * 监听
