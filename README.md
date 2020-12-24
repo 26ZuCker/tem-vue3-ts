@@ -31,8 +31,9 @@
     - Map & Set
     - WeakMap
     - 类型转换
+    - 内部属性参考http://www.ecma-international.org/ecma-262/5.1/index.html#sec-8.12
   - eventLoop
-  - iterable
+  - 迭代协议
     - for & -in & -of
     - [[enumerable]]即 iterable
   - async
@@ -49,7 +50,7 @@
     - 新增关键字
     - Generic
     - Decorator
-  - polyfill 整合
+  - 面试 polyfill
 - node 即中台
   - 原生模块
   - eventLoop
@@ -152,6 +153,13 @@
   - DOM API
   - BOM API
 - 工具 & 优化
+  - 优化
+    - 编码
+    - 构建
+    - 资源
+    - 网络
+      - render UI
+      - brotli
   - 环境变量
     - env
     - cross-env
@@ -181,7 +189,6 @@
   - lodash
   - dayjs
   - zlib
-  - brotli
   - vuelidate
   - 大文件
     - 切片

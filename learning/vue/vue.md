@@ -13,10 +13,29 @@
 1. slot：参考下方
 2. props
 3. ref
-4. parent & root
-5. `emits & attrs`
 
-注意： vue3 取消 listeners
+```vue
+<template>
+  <div ref="son"></div>
+</template>
+<script lang="ts">
+export default {
+  name: '',
+  setup() {
+    const son = ref(null);
+    return { son };
+  },
+};
+</script>
+```
+
+4. parent & root
+
+建议使用 attrs 以控制具体可穿透的属性
+
+5. attrs & emits
+
+注意： vue3 取消 listeners 和 children
 
 ```js
 //非props和emits定义的属性即attribute将会作为attrs对象的一部分
@@ -42,7 +61,7 @@ app.component('Son1', {
       <input type="text"/>
     </div>
   `,
-  setup(_, { attrs, emits, slots }) {
+  setup(_, { attrs }) {
     const {} = attrs;
   },
 });
@@ -58,13 +77,11 @@ app.component('Son2', {
 });
 ```
 
-4. event bus -> vuex
-
-```js
-//event-bus具体实现参考tool&opti，以下为如何将其作为plugin注入app
-```
-
-5. provide & inject
+6. event-bus -> vuex
+   ```js
+   //event-bus具体实现参考tool&opti，以下为如何将其作为plugin注入app
+   ```
+7. provide & inject
 
 #### Teleport & slot
 
