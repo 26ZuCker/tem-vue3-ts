@@ -40,6 +40,7 @@
     - Generator
     - Promise
     - async & await
+    - Async Iterator
   - proxy
   - HOC
     - curry
@@ -82,7 +83,7 @@
 - 工程化
   - 规范
     - eslint
-    - gitflow
+    - gitflow 学习https://learngitbranching.js.org/?NODEMO=&locale=zh_CN
     - CR & 命名
     - 目录结构
     - http 请求参考工具 & 优化/axios
@@ -170,6 +171,19 @@
     - Popup
     - Table
   - 正则
+  - 存储
+    - 缓存
+    - 客户端存储
+      - web storage
+        - sessionStorage
+        - localStorage
+      - IndexedDB
+      - cache API
+      - service worker
+    - 服务端存储
+      - redis 缓存
+      - mysql
+      - mongodb
   - canvas
   - 小程序 & taro
   - UI 库
@@ -191,6 +205,9 @@
   - dayjs
   - zlib
   - vuelidate
+  - Web Component
+    - shallow DOM
+    - templates
   - 大文件
     - 切片
     - 合并
