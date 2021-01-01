@@ -47,7 +47,7 @@
         - ToString
         - ToPrimitive
       - ===
-    - 内部属性参考http://www.ecma-international.org/ecma-262/5.1/index.html#sec-8.12
+    - 内部属性
   - eventLoop
   - 迭代协议
     - Iterator
