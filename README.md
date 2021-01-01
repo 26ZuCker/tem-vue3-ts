@@ -26,32 +26,48 @@
       - NaN
       - Bigint
     - String
+      - api
     - Array
+      - api
+      - 实现
+      - 稀疏数组
+      - arrayLike 参考迭代协议
     - Symbol
+      - api
+      - 应用
     - Map & Set
-    - WeakMap
+      - api
+      - 应用
+      - WeakMap
     - 类型转换
+      - 拆装箱参考https://juejin.cn/post/6844904042066345992
+      - To
+        - ToBoolean
+        - ToNumber
+        - ToString
+        - ToPrimitive
+      - ===
     - 内部属性参考http://www.ecma-international.org/ecma-262/5.1/index.html#sec-8.12
   - eventLoop
   - 迭代协议
-    - for & -in & -of
-    - [[enumerable]]即 iterable
-  - async
+    - Iterator
+    - for-in
+    - for-of
+    - arrayLike
     - Generator
+  - async
     - Promise
     - async & await
     - Async Iterator
   - proxy
-  - HOC
-    - curry
-    - compose
-    - sleep
   - eval
   - TS
     - 新增关键字
     - Generic
     - Decorator
-  - 面试 polyfill
+  - polyfills
+    - reduce
+    - sort
 - node 即中台
   - 原生模块
   - eventLoop
@@ -59,6 +75,7 @@
   - redis
   - 中台
 - 算法
+  - tree
   - re
   - bfs
   - dp
@@ -104,7 +121,7 @@
     - nginx
     - docker
   - 架构设计
-    - 模块化
+    - Modularizing
     - 设计模式
       - 创建型
         - 工厂
@@ -118,22 +135,30 @@
         - 中介者
         - 访问者
       - 结构型
+        - 亨元
         - 代理
         - 外观
         - 装饰者
         - 适配者
     - SOLID
-    - 编程风格
+    - 编程范式
       - IOC
         - 依赖注入
       - OOP
       - AOP & COP
       - FP
         - 函数定义
-        - 匿名函数
+        - HOC
+          - curry
+          - compose
+          - sleep
+          - partial
   - micro-frontend
   - 独立发布
   - CI & CD
+  - serverless 参考https://juejin.cn/post/6895217723476738061
+    - faas
+    - baas
   - 多端
 - 网络 & 浏览器
   - css
@@ -152,6 +177,8 @@
   - 渲染
   - 安全
   - 事件机制
+    - 冒泡
+    - 监听
   - DOM API
   - BOM API
 - 工具 & 优化
@@ -163,7 +190,7 @@
       - render UI
       - brotli
   - 环境变量
-    - env
+    - .env
     - cross-env
   - 自定义组件
     - Dialog
