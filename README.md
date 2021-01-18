@@ -1,4 +1,18 @@
+> 面试：
+>
+> 1. https://github.com/Advanced-Frontend/Daily-Interview-Question
+> 2. https://github.com/vue3/vue3-News
+> 3. https://github.com/mqyqingfeng/Blog
+> 4. https://github.com/haizlin/fe-interview
+> 5. https://juejin.cn/user/2348212569517645
+> 6. https://juejin.cn/user/360295513463912
+> 7. https://juejin.cn/user/430664257382462
+> 8. https://juejin.cn/user/2330620350708823
+>
+> JavaScript 中的函数运行在它们被定义的作用域里,而不是它们被执行的作用域里
+
 - ES
+
   - context
     - VO
       - AO
@@ -17,6 +31,9 @@
     - 拷贝
       - shadow
       - deep
+    - 属性
+      - 内置
+      - 属性描述符
   - 类型
     - let & const
     - null & undefined
@@ -40,6 +57,7 @@
       - 应用
       - WeakMap
     - 二进制
+    - Object-api
     - 类型转换
       - 拆装箱参考https://juejin.cn/post/6844904042066345992
       - To
@@ -48,7 +66,6 @@
         - ToString
         - ToPrimitive
       - ===
-    - 内部属性
   - eventLoop
   - 迭代协议
     - Iterator
@@ -69,12 +86,17 @@
   - polyfills
     - reduce
     - sort
+
 - node 即中台
   - 原生模块
   - eventLoop
   - koa
   - redis
   - 中台
+  - npm
+    - yarn
+    - cnpm
+    - npx
 - 算法
   - tree
   - re
@@ -83,6 +105,7 @@
   - LRU
 - 框架
   - vue
+    - vetur
     - api 示例
     - router
       - guard
@@ -99,12 +122,16 @@
     - 源码
   - react
 - 工程化
+  - git
+    - 基本
+    - rebase
+    - github flow
   - 规范
     - eslint
-    - gitflow 学习https://learngitbranching.js.org/?NODEMO=&locale=zh_CN
     - CR & 命名
     - 目录结构
     - http 请求参考工具 & 优化/axios
+  - cli
   - webpack 即打包
     - 优化参考下方
     - rollup & vite
@@ -175,21 +202,33 @@
     - BFC
     - shallow
   - http
+    - get & post
+    - 输入 url
+    - 状态码
   - 渲染
   - 安全
-  - 事件机制
-    - 冒泡
-    - 监听
-  - DOM API
-  - BOM API
+  - DOM & BOM
+    - 元素
+    - Repaint & reflow
+    - MutationObserver
+    - 事件机制
+      - 冒泡
+      - 监听
+    - ajax
 - 工具 & 优化
+  - V8
+    - 流程
+    - 垃圾回收
+    - 排序
   - 优化
     - 编码
     - 构建
     - 资源
+      - brotli
     - 网络
       - render UI
-      - brotli
+      - 监听
+    - 内存泄漏
   - 环境变量
     - .env
     - cross-env
@@ -208,7 +247,7 @@
       - IndexedDB
       - cache API
       - service worker
-    - 服务端存储
+    - 服务端存储即持久化
       - redis 缓存
       - mysql
       - mongodb
@@ -219,7 +258,9 @@
     - element-plus
   - 监控
     - 性能
+      - performance
     - 错误
+      - try-catch
       - 监察
       - 上报
     - 埋点
