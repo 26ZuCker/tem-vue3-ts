@@ -86,6 +86,7 @@
   - polyfills
     - reduce
     - sort
+    - 面试
 
 - node 即中台
   - 原生模块
@@ -134,7 +135,8 @@
   - cli
   - webpack 即打包
     - 优化参考下方
-    - rollup & vite
+    - rollup & gulp
+    - vite
     - module-federation
     - tree-shaking
     - HMR
@@ -205,12 +207,11 @@
     - get & post
     - 输入 url
     - 状态码
-  - 渲染
   - 安全
   - DOM & BOM
     - 元素
     - Repaint & reflow
-    - MutationObserver
+    - MutationObserver & IntersectionObserver
     - 事件机制
       - 冒泡
       - 监听
@@ -267,6 +268,9 @@
       - 访问次数
       - 停留时长
   - pre-render
+  - 懒加载
+    - route
+    - 图片
   - axios
     - 封装
     - api 管理
@@ -293,5 +297,18 @@
     - 分页
     - 虚拟列表
     - 瀑布流
-  - 懒加载
   - event-bus
+- 算法
+  - tree
+    - 遍历方式
+      1. 递归
+      2. 通用栈
+      3. 二维数组&双色标记
+      4. Morris，O(1)空间
+    - BST
+    - AST
+    - Trie
+  - linked list
+  - 双指针
+  - 回溯
+  - dp
